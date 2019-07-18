@@ -1,0 +1,30 @@
+{
+  "name": "vtex-deploy",
+  "version": "1.0.0",
+  "description": "Deploy assets to vtex",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "node ./examples/save-template-example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/0000marcell/vtex-deploy.git"
+  },
+  "keywords": [
+    "VTEX",
+    "CMS",
+    "deploy",
+    "API"
+  ],
+  "author": "Marcell Cruz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0000marcell/vtex-deploy/issues"
+  },
+  "homepage": "https://github.com/0000marcell/vtex-deploy#readme",
+  "dependencies": {
+    "clipboardy": "^2.1.0",
+    "jsdom": "^15.1.1",
+    "request": "^2.88.0"
+  }
+}
