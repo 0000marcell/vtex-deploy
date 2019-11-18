@@ -41,7 +41,7 @@ module.exports = async function(opts) {
       if(response.statusCode === 200 && !/originalMessage/.test(body)) {
         console.log(`* Template ${opts.name} was saved on ${opts.store}`);
       } else {
-        console.error(`* Template was not saved!`);
+        console.error(`* Template ${opts.name} was not saved!`);
         console.error(`* check the logs! ./.vtex-deploy`);
       }
 
