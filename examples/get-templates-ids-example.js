@@ -1,6 +1,9 @@
 const getTemplatesIds = require('../src/get-templates-ids');
 const getAuthCookie = require('../src/get-auth-cookie');
 
+//*
+// Return the name and the id of all the templates
+///
 async function run() {
   const authCookie = await getAuthCookie()
 

@@ -1,0 +1,687 @@
+
+    <div>
+      <h1>undefined</h1>
+      
+<ul class="jqueryFileTree" rel="" style="display: none;"><li class="directory collapsed ext_txt"><a href="/admin/a/PortalManagement/DictionaryContentBody?SiteId=cf259fcc38224ee9afc74ad92bbffe99" path="/admin/a/PortalManagement/DictionaryContentBody?SiteId=cf259fcc38224ee9afc74ad92bbffe99" rel="dictionary:cf259fcc38224ee9afc74ad92bbffe99/">Dictionary</a></li><li class="directory collapsed droppable"><a href="/admin/a/PortalManagement/FolderContentBody?dir=folder:cf259fcc38224ee9afc74ad92bbffe99:8540a09c6233440993e4c5d3ee844c3c/" path="/admin/a/PortalManagement/FolderContentBody?dir=folder:cf259fcc38224ee9afc74ad92bbffe99:8540a09c6233440993e4c5d3ee844c3c/" rel="folder:cf259fcc38224ee9afc74ad92bbffe99:8540a09c6233440993e4c5d3ee844c3c/">/</a></li></ul>
+    </div>
+    <hr />
+  
+    <div>
+      <h1>undefined</h1>
+      
+<div id="tabs-file">
+    <ul>
+        <li><a href="#tabs-template-code">Files Maintenance</a></li>
+    </ul>
+    <div style="font-weight: 500" id="tabs-template-code">
+        <fieldset>
+            <legend>
+                Add files .css</legend><span>
+                    Find the new file and click Save.<br />
+                    <br />
+                </span>
+            <table width="100%">
+                <tr>
+                    <td width="30%" valign="top" nowrap="nowrap">
+                        <input id="fileInputFilePicker" name="fileInputFilePicker" type="file" />
+                        <input id="fileManagerFileName" name="fileManagerFileName" type="hidden" value="" />
+                    </td>
+                    <td>
+                        <a class="href-save-file" style="display: none" href="javascript:$('#fileInputFilePicker').uploadifyUpload();">
+                            <img alt="Gravar Arquivo" border="0" src="/admin/a/scripts/uploadify/btn_salvararquivo.png" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <div class="btn-vtex-button-save">
+                            <p align="right">
+                                <input class="vtex-button-save button-default-voltar" onclick="FileManagementBackButtonClick();"
+                                    type="button" value="Back to Files Manager" />&nbsp;
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div id="filePickerListContainer">
+            </div>
+            <input id="insertFileExtension" name="insertFileExtension" type="hidden" value="css" />
+            <input id="fileUploadRequestToken" name="fileUploadRequestToken" type="hidden" value="Q4WC3ZSN2VYK0ZPEXM3LS4JR0X1E0T1V0D1I0R1E0K1C0I1P0E1L0I1F637096838268134484" />
+            <input id="fileUploadMultiFile" name="fileUploadMultiFile" type="hidden" value="true" />
+            <input id="fileUploadFileName" name="fileUploadFileName" type="hidden" value="" />
+            <div style="display: none" id="hiddenmessage" />
+            
+        </fieldset>
+    </div>
+</div>
+<script type="text/javascript" language="javascript">
+    var ext = MakeFileExtensions($('#insertFileExtension').val());
+    var token = $('#fileUploadRequestToken').val();
+    var multi = $('#fileUploadMultiFile').val();
+    var fileUpdateFileName = $('#fileUploadFileName').val();
+    var fileUpdateFileId = $('#fileUploadFileId').val();
+    PrepareUploadFileTo_FileManger('#fileInputFilePicker', multi, ext, token, fileUpdateFileName, fileUpdateFileId);
+
+    function MakeFileExtensions(s) {
+        if (s == 'images') return '*.jpg;*.png;*.gif;*.jpeg;*.ico';
+        else return '*.' + s;
+    }
+
+    function FileManagerUpdateFileButtonClick() {
+        dataToPost = {
+            fileManagerFileName: fileUpdateFileName,
+            fileManagerFileContent: escape($('#fileManagerFileContent').val()),
+            extension: ext,
+            requestToken: token
+        }
+        var url = 'FilePicker/UploadFile/';
+        FileManagerAjaxRequest('POST', url, dataToPost, '.userMessage', '');
+        return true;
+    }
+
+    function FileManagerAjaxRequest(method, url, postData, target, callback) {
+        $.ajax({
+            type: method,
+            url: url,
+            data: postData,
+            success: function (dataResult) {
+                Refresh(target);
+                if (callback != null && callback != '') callback();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('#hiddenmessage').html(XMLHttpRequest.responseText);
+                ShowMessage('Unexpected Error, look at hiddenmessage for more details');
+            }
+        });
+    }
+
+    function Refresh(target) {
+        originalFile = $('#fileManagerFileContent').val();
+        $('.vtex-button-update-file').attr('disabled', 'disabled');
+        if (target != null && target != '') {
+            $(target).html('<font color="red">File Updated successfully!</font>');
+        }
+    }
+
+    function HandleEnableButton() {
+        //alert(originalFile);
+        if (originalFile != $('#fileManagerFileContent').val()) {
+            $('.vtex-button-update-file').removeAttr('disabled');
+            $('.userMessage').html('Click "Update File", or press "Control+S".');
+        } else {
+            $('.vtex-button-update-file').attr('disabled', 'disabled');
+            $('.userMessage').html('&nbsp;');
+        }
+    }
+
+    $('#fileManagerFileContent').keyup(
+        HandleEnableButton
+    );
+
+    MainPrepareShortCuts('fileManagerFileContent', '.vtex-button-update-file:enabled', null, null);
+</script>
+    </div>
+    <hr />
+  
+    <div>
+      <h1>_test.css</h1>
+      <!DOCTYPE html>
+<html>
+    <head>
+        <title>Index was outside the bounds of the array.</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:pointer; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><H1>Server Error in '/admin/a' Application.<hr width=100% size=1 color=silver></H1>
+
+            <h2> <i>Index was outside the bounds of the array.</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> Description: </b>An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+            <br><br>
+
+            <b> Exception Details: </b>System.IndexOutOfRangeException: Index was outside the bounds of the array.<br><br>
+
+            <b>Source Error:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code>
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <b>Stack Trace:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+[IndexOutOfRangeException: Index was outside the bounds of the array.]
+   Vtex.Commerce.WebApps.Admin.Controllers.FilePickerController.UploadFile(FormCollection form) in F:\pachamama\BuildAgent\work\c333514e6487017c\src\web applications\vtex.commerce.webapps.admin\Controllers\FilePickerController.cs:219
+   lambda_method(Closure , ControllerBase , Object[] ) +139
+   System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters) +280
+   System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) +35
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass42.&lt;BeginInvokeSynchronousActionMethod&gt;b__41() +33
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult) +69
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass39.&lt;BeginInvokeActionMethodWithFilters&gt;b__33() +80
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4f.&lt;InvokeActionMethodFilterAsynchronously&gt;b__49() +396
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult) +69
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass2a.&lt;BeginInvokeAction&gt;b__20() +32
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass25.&lt;BeginInvokeAction&gt;b__22(IAsyncResult asyncResult) +187
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult) +59
+   System.Web.Mvc.&lt;&gt;c__DisplayClass1d.&lt;BeginExecuteCore&gt;b__18(IAsyncResult asyncResult) +30
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult) +73
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult) +59
+   System.Web.Mvc.&lt;&gt;c__DisplayClass8.&lt;BeginProcessRequest&gt;b__3(IAsyncResult asyncResult) +44
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult) +38
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +431
+   System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step) +75
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +158
+</pre>                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <hr width=100% size=1 color=silver>
+
+            <b>Version Information:</b>&nbsp;Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.8.4042.0
+
+            </font>
+
+    </body>
+</html>
+<!-- 
+[IndexOutOfRangeException]: Index was outside the bounds of the array.
+   at Vtex.Commerce.WebApps.Admin.Controllers.FilePickerController.UploadFile(FormCollection form) in F:\pachamama\BuildAgent\work\c333514e6487017c\src\web applications\vtex.commerce.webapps.admin\Controllers\FilePickerController.cs:line 219
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--><!-- 
+This error page might contain sensitive information because ASP.NET is configured to show verbose error messages using &lt;customErrors mode="Off"/&gt;. Consider using &lt;customErrors mode="On"/&gt; or &lt;customErrors mode="RemoteOnly"/&gt; in production environments.-->
+    </div>
+    <hr />
+  
+    <div>
+      <h1>undefined</h1>
+      
+<div id="tabs-file">
+    <ul>
+        <li><a href="#tabs-template-code">Files Maintenance</a></li>
+    </ul>
+    <div style="font-weight: 500" id="tabs-template-code">
+        <fieldset>
+            <legend>
+                Add files .css</legend><span>
+                    Find the new file and click Save.<br />
+                    <br />
+                </span>
+            <table width="100%">
+                <tr>
+                    <td width="30%" valign="top" nowrap="nowrap">
+                        <input id="fileInputFilePicker" name="fileInputFilePicker" type="file" />
+                        <input id="fileManagerFileName" name="fileManagerFileName" type="hidden" value="" />
+                    </td>
+                    <td>
+                        <a class="href-save-file" style="display: none" href="javascript:$('#fileInputFilePicker').uploadifyUpload();">
+                            <img alt="Gravar Arquivo" border="0" src="/admin/a/scripts/uploadify/btn_salvararquivo.png" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <div class="btn-vtex-button-save">
+                            <p align="right">
+                                <input class="vtex-button-save button-default-voltar" onclick="FileManagementBackButtonClick();"
+                                    type="button" value="Back to Files Manager" />&nbsp;
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div id="filePickerListContainer">
+            </div>
+            <input id="insertFileExtension" name="insertFileExtension" type="hidden" value="css" />
+            <input id="fileUploadRequestToken" name="fileUploadRequestToken" type="hidden" value="W0XR1ZABFJIY3XERIWVSOWPZ0X1E0T1V0D1I0R1E0K1C0I1P0E1L0I1F637096866611826483" />
+            <input id="fileUploadMultiFile" name="fileUploadMultiFile" type="hidden" value="true" />
+            <input id="fileUploadFileName" name="fileUploadFileName" type="hidden" value="" />
+            <div style="display: none" id="hiddenmessage" />
+            
+        </fieldset>
+    </div>
+</div>
+<script type="text/javascript" language="javascript">
+    var ext = MakeFileExtensions($('#insertFileExtension').val());
+    var token = $('#fileUploadRequestToken').val();
+    var multi = $('#fileUploadMultiFile').val();
+    var fileUpdateFileName = $('#fileUploadFileName').val();
+    var fileUpdateFileId = $('#fileUploadFileId').val();
+    PrepareUploadFileTo_FileManger('#fileInputFilePicker', multi, ext, token, fileUpdateFileName, fileUpdateFileId);
+
+    function MakeFileExtensions(s) {
+        if (s == 'images') return '*.jpg;*.png;*.gif;*.jpeg;*.ico';
+        else return '*.' + s;
+    }
+
+    function FileManagerUpdateFileButtonClick() {
+        dataToPost = {
+            fileManagerFileName: fileUpdateFileName,
+            fileManagerFileContent: escape($('#fileManagerFileContent').val()),
+            extension: ext,
+            requestToken: token
+        }
+        var url = 'FilePicker/UploadFile/';
+        FileManagerAjaxRequest('POST', url, dataToPost, '.userMessage', '');
+        return true;
+    }
+
+    function FileManagerAjaxRequest(method, url, postData, target, callback) {
+        $.ajax({
+            type: method,
+            url: url,
+            data: postData,
+            success: function (dataResult) {
+                Refresh(target);
+                if (callback != null && callback != '') callback();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('#hiddenmessage').html(XMLHttpRequest.responseText);
+                ShowMessage('Unexpected Error, look at hiddenmessage for more details');
+            }
+        });
+    }
+
+    function Refresh(target) {
+        originalFile = $('#fileManagerFileContent').val();
+        $('.vtex-button-update-file').attr('disabled', 'disabled');
+        if (target != null && target != '') {
+            $(target).html('<font color="red">File Updated successfully!</font>');
+        }
+    }
+
+    function HandleEnableButton() {
+        //alert(originalFile);
+        if (originalFile != $('#fileManagerFileContent').val()) {
+            $('.vtex-button-update-file').removeAttr('disabled');
+            $('.userMessage').html('Click "Update File", or press "Control+S".');
+        } else {
+            $('.vtex-button-update-file').attr('disabled', 'disabled');
+            $('.userMessage').html('&nbsp;');
+        }
+    }
+
+    $('#fileManagerFileContent').keyup(
+        HandleEnableButton
+    );
+
+    MainPrepareShortCuts('fileManagerFileContent', '.vtex-button-update-file:enabled', null, null);
+</script>
+    </div>
+    <hr />
+  
+    <div>
+      <h1>_test.css</h1>
+      <!DOCTYPE html>
+<html>
+    <head>
+        <title>Index was outside the bounds of the array.</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:pointer; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><H1>Server Error in '/admin/a' Application.<hr width=100% size=1 color=silver></H1>
+
+            <h2> <i>Index was outside the bounds of the array.</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> Description: </b>An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+            <br><br>
+
+            <b> Exception Details: </b>System.IndexOutOfRangeException: Index was outside the bounds of the array.<br><br>
+
+            <b>Source Error:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code>
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <b>Stack Trace:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+[IndexOutOfRangeException: Index was outside the bounds of the array.]
+   Vtex.Commerce.WebApps.Admin.Controllers.FilePickerController.UploadFile(FormCollection form) in F:\pachamama\BuildAgent\work\c333514e6487017c\src\web applications\vtex.commerce.webapps.admin\Controllers\FilePickerController.cs:219
+   lambda_method(Closure , ControllerBase , Object[] ) +139
+   System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters) +280
+   System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) +35
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass42.&lt;BeginInvokeSynchronousActionMethod&gt;b__41() +33
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult) +42
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass39.&lt;BeginInvokeActionMethodWithFilters&gt;b__33() +80
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4f.&lt;InvokeActionMethodFilterAsynchronously&gt;b__49() +396
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult) +42
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass2a.&lt;BeginInvokeAction&gt;b__20() +32
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass25.&lt;BeginInvokeAction&gt;b__22(IAsyncResult asyncResult) +187
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult) +38
+   System.Web.Mvc.&lt;&gt;c__DisplayClass1d.&lt;BeginExecuteCore&gt;b__18(IAsyncResult asyncResult) +30
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult) +52
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult) +38
+   System.Web.Mvc.&lt;&gt;c__DisplayClass8.&lt;BeginProcessRequest&gt;b__3(IAsyncResult asyncResult) +44
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult) +38
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +431
+   System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step) +75
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +158
+</pre>                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <hr width=100% size=1 color=silver>
+
+            <b>Version Information:</b>&nbsp;Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.8.4042.0
+
+            </font>
+
+    </body>
+</html>
+<!-- 
+[IndexOutOfRangeException]: Index was outside the bounds of the array.
+   at Vtex.Commerce.WebApps.Admin.Controllers.FilePickerController.UploadFile(FormCollection form) in F:\pachamama\BuildAgent\work\c333514e6487017c\src\web applications\vtex.commerce.webapps.admin\Controllers\FilePickerController.cs:line 219
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--><!-- 
+This error page might contain sensitive information because ASP.NET is configured to show verbose error messages using &lt;customErrors mode="Off"/&gt;. Consider using &lt;customErrors mode="On"/&gt; or &lt;customErrors mode="RemoteOnly"/&gt; in production environments.-->
+    </div>
+    <hr />
+  
+    <div>
+      <h1>undefined</h1>
+      
+<div class="vtex-portal-top" id="top">
+    Web-sites
+</div>
+<div class="vtex-portal-body" id="body">
+    <ul class="jqueryFileTreeBody">
+        
+        <li class="web-site" style="height: auto; width: auto;">
+            <div style="width: 400px; float: left">
+                moda-original
+            </div>
+            <a class="IconDel" href="/admin/a/PortalManagement/GetFormConfirmWebSiteDel?websiteId=cf259fcc-3822-4ee9-afc7-4ad92bbffe99" onclick="Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, httpMethod: &#39;POST&#39;, updateTargetId: &#39;dialog-confirm&#39;, onBegin: Function.createDelegate(this, ShowBusy), onComplete: Function.createDelegate(this, HideBusy), onFailure: Function.createDelegate(this, Form_Submit_Failure), onSuccess: Function.createDelegate(this, OpenConfirmFolderDel) });" title="delete web-site">delete</a>
+            
+        </li>
+        
+        <li class="web-site" style="height: auto; width: auto;">
+            <div style="width: 400px; float: left">
+                poc-original
+            </div>
+            <a class="IconDel" href="/admin/a/PortalManagement/GetFormConfirmWebSiteDel?websiteId=3d3509ee-c046-4151-9c57-5e5409d7465f" onclick="Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, httpMethod: &#39;POST&#39;, updateTargetId: &#39;dialog-confirm&#39;, onBegin: Function.createDelegate(this, ShowBusy), onComplete: Function.createDelegate(this, HideBusy), onFailure: Function.createDelegate(this, Form_Submit_Failure), onSuccess: Function.createDelegate(this, OpenConfirmFolderDel) });" title="delete web-site">delete</a>
+            
+        </li>
+        
+        <li class="web-site" style="height: auto; width: auto;">
+            <div style="width: 400px; float: left">
+                teste-original
+            </div>
+            <a class="IconDel" href="/admin/a/PortalManagement/GetFormConfirmWebSiteDel?websiteId=974464ab-68b8-49e9-8f14-7478f8b9e1e7" onclick="Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, httpMethod: &#39;POST&#39;, updateTargetId: &#39;dialog-confirm&#39;, onBegin: Function.createDelegate(this, ShowBusy), onComplete: Function.createDelegate(this, HideBusy), onFailure: Function.createDelegate(this, Form_Submit_Failure), onSuccess: Function.createDelegate(this, OpenConfirmFolderDel) });" title="delete web-site">delete</a>
+            
+        </li>
+        
+        <li class="web-site web-site-alerta" title="This website has bindings that were not found on License Manager. Update the website and choose an option available" style="height: auto; width: auto;">
+            <div style="width: 400px; float: left">
+                vtex-original
+            </div>
+            <a class="IconAlertRed" href="/admin/a/?websiteId=b6744a2c-44fc-4b12-9d49-8f2df98cd6e9" onclick="Sys.Mvc.AsyncHyperlink.handleClick(this, new Sys.UI.DomEvent(event), { insertionMode: Sys.Mvc.InsertionMode.replace, httpMethod: &#39;POST&#39;, updateTargetId: &#39;dialog-confirm&#39; });" title="Cannot delete the main website!">default web site</a>
+
+            
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+    <hr />
+  
+    <div>
+      <h1>_test.css</h1>
+      <!DOCTYPE html>
+<html>
+    <head>
+        <title>Index was outside the bounds of the array.</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:pointer; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><H1>Server Error in '/admin/a' Application.<hr width=100% size=1 color=silver></H1>
+
+            <h2> <i>Index was outside the bounds of the array.</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> Description: </b>An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+            <br><br>
+
+            <b> Exception Details: </b>System.IndexOutOfRangeException: Index was outside the bounds of the array.<br><br>
+
+            <b>Source Error:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code>
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <b>Stack Trace:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+[IndexOutOfRangeException: Index was outside the bounds of the array.]
+   Vtex.Commerce.WebApps.Admin.Controllers.FilePickerController.UploadFile(FormCollection form) in F:\pachamama\BuildAgent\work\c333514e6487017c\src\web applications\vtex.commerce.webapps.admin\Controllers\FilePickerController.cs:219
+   lambda_method(Closure , ControllerBase , Object[] ) +139
+   System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters) +280
+   System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) +35
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass42.&lt;BeginInvokeSynchronousActionMethod&gt;b__41() +33
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult) +42
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass39.&lt;BeginInvokeActionMethodWithFilters&gt;b__33() +80
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4f.&lt;InvokeActionMethodFilterAsynchronously&gt;b__49() +396
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult) +42
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass2a.&lt;BeginInvokeAction&gt;b__20() +32
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass25.&lt;BeginInvokeAction&gt;b__22(IAsyncResult asyncResult) +187
+   System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult) +38
+   System.Web.Mvc.&lt;&gt;c__DisplayClass1d.&lt;BeginExecuteCore&gt;b__18(IAsyncResult asyncResult) +30
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult) +52
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult) +38
+   System.Web.Mvc.&lt;&gt;c__DisplayClass8.&lt;BeginProcessRequest&gt;b__3(IAsyncResult asyncResult) +44
+   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass4.&lt;MakeVoidDelegate&gt;b__3(IAsyncResult ar) +25
+   System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult) +38
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +431
+   System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step) +75
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +158
+</pre>                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <hr width=100% size=1 color=silver>
+
+            <b>Version Information:</b>&nbsp;Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.8.4042.0
+
+            </font>
+
+    </body>
+</html>
+<!-- 
+[IndexOutOfRangeException]: Index was outside the bounds of the array.
+   at Vtex.Commerce.WebApps.Admin.Controllers.FilePickerController.UploadFile(FormCollection form) in F:\pachamama\BuildAgent\work\c333514e6487017c\src\web applications\vtex.commerce.webapps.admin\Controllers\FilePickerController.cs:line 219
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--><!-- 
+This error page might contain sensitive information because ASP.NET is configured to show verbose error messages using &lt;customErrors mode="Off"/&gt;. Consider using &lt;customErrors mode="On"/&gt; or &lt;customErrors mode="RemoteOnly"/&gt; in production environments.-->
+    </div>
+    <hr />
+  
