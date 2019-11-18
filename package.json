@@ -1,8 +1,8 @@
 {
   "name": "vtex-deploy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Deploy assets to vtex",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "node ./examples/save-template-example.js"
   },

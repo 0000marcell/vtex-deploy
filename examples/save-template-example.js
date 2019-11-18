@@ -1,5 +1,5 @@
-const getTemplatesIds = require('../src/get-templates-ids');
 const getAuthCookie = require('../src/get-auth-cookie');
+const saveTemplate = require9'../src/save-template');
 
 async function run() {
   const authCookie = await getAuthCookie()
