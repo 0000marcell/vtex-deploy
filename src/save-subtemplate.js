@@ -36,18 +36,18 @@ module.exports = async function(opts) {
       }
     }, function(error, response, body){
       if(error) {
-        console.error('Subtemplate was not saved: ', error);
+        console.error(`Subtemplate ${opts.name} was not saved: `, error);
       }
       if(response.statusCode === 200 && !/originalMessage/.test(body)) {
         console.log(`* Subtemplate ${opts.name} was saved on ${opts.store}`);
       } else {
-        console.error(`* Subtemplate was not saved!`);
+        console.error(`* Subtemplate ${opts.name} was not saved!`);
         console.error(`* check the logs! ./.vtex-deploy`);
       }
 
       logger(opts, body);
     });
   } catch(err) { 
-    console.error(`Template was not saved error: ${err}`); 
+    console.error(`SubTemplate ${opts.name} was not saved error: ${err}`); 
   }
 }

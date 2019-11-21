@@ -42,16 +42,16 @@ module.exports = async function(opts) {
       }
     }, function(error, response, body){
       if(error) {
-        console.error('Shelf Template was not saved: ', error);
+        console.error(`Shelf Template ${opts.name} was not saved: `, error);
       }
-      if(response.statusCode === 200 || response.statusCode === 302) {
+      if(response.statusCode === 200 && !/originalMessage/.test(body)) {
         console.log(`* Shelf Template ${opts.name} was saved on ${opts.store}`);
       } else {
-        console.error(`* Shelf Template was not saved!`);
+        console.error(`* Shelf Template ${opts.name} was not saved!`);
         console.error(`* check the logs! ./.vtex-deploy`);
       }
 
-      logger(opts, body);
+      logger(opts, body)
     });
   } catch(err) { 
     console.error(`Shelf Template was not saved error: ${err}`); 

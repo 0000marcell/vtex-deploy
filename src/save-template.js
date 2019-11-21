@@ -36,7 +36,7 @@ module.exports = async function(opts) {
       }
     }, function(error, response, body){
       if(error) {
-        console.error('Template was not saved: ', error);
+        console.error(`Template ${opts.name} was not saved: `, error);
       }
       if(response.statusCode === 200 && !/originalMessage/.test(body)) {
         console.log(`* Template ${opts.name} was saved on ${opts.store}`);
@@ -48,6 +48,6 @@ module.exports = async function(opts) {
       logger(opts, body)
     });
   } catch(err) { 
-    console.error(`Template was not saved error: ${err}`); 
+    console.error(`Template ${opts.name} was not saved error: ${err}`); 
   }
 }
