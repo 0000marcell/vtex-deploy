@@ -3,7 +3,6 @@ const saveTemplate = require('./src/save-template');
 const saveSubtemplate = require('./src/save-subtemplate');
 const saveShelfTemplate = require('./src/save-shelf-template');
 
-
 module.exports = {
   getAuthCookie: getAuthCookie,
   saveTemplate: saveTemplate,
