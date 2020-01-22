@@ -1,6 +1,6 @@
 {
   "name": "vtex-deploy",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Deploy assets to vtex",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,9 @@
     "API"
   ],
   "author": "Marcell Cruz",
+  "contributors": [
+    "Zeonardo Lima <zeonardo@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/0000marcell/vtex-deploy/issues"

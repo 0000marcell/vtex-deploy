@@ -3,11 +3,11 @@ const getAuthCookie = require('../src/get-auth-cookie');
 const getTemplatesIds = require('../src/get-templates-ids');
 
 const HTML = `<div>
-  <h1>ShelfTemplate6 !!!</h1>
+  <h1>ShelfTemplate1 !!!</h1>
 </div>`;
 
 async function run() {
-  const authCookie = await getAuthCookie()
+  const authCookie = await getAuthCookie();
 
   // before saving a shelf template you must known if 
   // the shelf name you are trying to save already exist
@@ -18,19 +18,22 @@ async function run() {
     type: 'shelfTemplate',
     isSub: true
   }, (shelfs) => {
+    
     let id = '';
-    if(shelfs['new-shelf3']) {
-      id = shelfs['new-shelf'];
+    if (shelfs['new-shelf3']) {
+      id = shelfs['new-shelf3'];
     }
-    saveShelfTemplate({
+    const result = await saveShelfTemplate({
       authCookie: authCookie,
       store: 'modaoriginal',
       name: 'new-shelf3',
       html: HTML,
       id: id,
-      cssClass: 'shelf-default'
+      cssClass: 'shelf-default test1'
     });
+
+    console.log('>> result', result);
   });
 }
 
-run()
+run();

@@ -12,12 +12,13 @@ const logger = require('./logger');
     html: HTML,
   } 
 */
-module.exports = async function(opts) {
+module.exports = async function(opts, cb) {
   let baseUrl = '.vtexcommercestable.com.br/admin/a/PortalManagement/SaveTemplate';
   let url = `https://${opts.store}${baseUrl}`;
+  const templateId = generateNewTemplateId(opts.name);
 
   try {
-    request({
+    return request({
       headers: {
         'Cache-Control': 'no-cache',
         'Accept': '*/*',
@@ -28,26 +29,34 @@ module.exports = async function(opts) {
       url: url,
       form: {
         templatename: opts.name,
-        templateId: generateNewTemplateId(opts.name),
+        templateId: templateId,
         template: opts.html,   
         isSub: 'true',
         actionForm: 'Save',
         textConfirm: 'sim'
       }
     }, function(error, response, body){
+      let success = false;
       if(error) {
         console.error(`Subtemplate ${opts.name} was not saved: `, error);
       }
       if(response.statusCode === 200 && !/originalMessage/.test(body)) {
         console.log(`* Subtemplate ${opts.name} was saved on ${opts.store}`);
+        success = true;
       } else {
         console.error(`* Subtemplate ${opts.name} was not saved!`);
         console.error(`* check the logs! ./.vtex-deploy`);
       }
 
       logger(opts, body);
+      if(typeof cb == 'function'){
+        cb(success ? templateId : undefined);
+      }
     });
   } catch(err) { 
-    console.error(`SubTemplate ${opts.name} was not saved error: ${err}`); 
+    console.error(`SubTemplate ${opts.name} was not saved error: ${err}`);
+    if(typeof cb == 'function'){
+      cb(null);
+    }
   }
-}
+};
