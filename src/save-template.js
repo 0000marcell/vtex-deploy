@@ -15,7 +15,9 @@ const logger = require('./logger');
 module.exports = async function(opts, cb) {
   let baseUrl = '.vtexcommercestable.com.br/admin/a/PortalManagement/SaveTemplate';
   let url = `https://${opts.store}${baseUrl}`;
-  const templateId = generateNewTemplateId(opts.name);
+  let templateId = opts.id || generateNewTemplateId(opts.name);
+  let actionForm = (opts.id) ? 'Update' : 'Save';
+  
   try {
     return request({
       headers: {
@@ -31,7 +33,7 @@ module.exports = async function(opts, cb) {
         templateId: templateId,
         template: opts.html,   
         isSub: false,
-        actionForm: 'Save',
+        actionForm: actionForm,
         textConfirm: 'sim'
       }
     }, function(error, response, body){

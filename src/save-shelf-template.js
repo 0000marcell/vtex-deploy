@@ -17,8 +17,8 @@ module.exports = async function(opts, cb) {
   let baseUrl = '.vtexcommercestable.com.br/admin/a/PortalManagement/SaveShelfTemplate';
   let url = `https://${opts.store}${baseUrl}`;
   let templateId = opts.id || generateNewTemplateId(opts.name);
-  let actionForm = (opts.id) ? 'Update' : 'Save';  
-  let templateCssClass = opts.cssClass || 'shelf'; 
+  let actionForm = (opts.id) ? 'Update' : 'Save';
+  let templateCssClass = opts.cssClass || 'shelf';
 
   try {
     return request({
