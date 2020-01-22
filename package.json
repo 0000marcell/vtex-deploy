@@ -1,6 +1,6 @@
 {
   "name": "vtex-deploy",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Deploy assets to vtex",
   "main": "index.js",
   "scripts": {
