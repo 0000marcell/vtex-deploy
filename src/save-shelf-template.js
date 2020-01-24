@@ -19,6 +19,7 @@ module.exports = async function(opts, cb) {
   let templateId = opts.id || generateNewTemplateId(opts.name);
   let actionForm = (opts.id) ? 'Update' : 'Save';
   let templateCssClass = opts.cssClass || 'shelf';
+  const log = opts.log !== false;
 
   try {
     return request({
@@ -43,18 +44,18 @@ module.exports = async function(opts, cb) {
     }, function(error, response, body){
       let success = false;
       if(error) {
-        console.error(`Shelf Template ${opts.name} was not saved: `, error);
+        log && console.error(`Shelf Template ${opts.name} was not saved: `, error);
       }
       if(/\/admin\/login\?portal/.test(body)){
-        console.warn(`* invalid or expired cookie`);
-        console.error(`* Shelf Template ${opts.name} was not saved! (${response.statusCode})`);
+        log && console.warn(`* invalid or expired cookie`);
+        log && console.error(`* Shelf Template ${opts.name} was not saved! (${response.statusCode})`);
       }
       else if((response.statusCode < 400 || response.statusCode > 600) && !/originalMessage/.test(body)) {
-        console.log(`* Shelf Template ${opts.name} was saved on ${opts.store}`);
+        log && console.log(`* Shelf Template ${opts.name} was saved on ${opts.store}`);
         success = true;
       } else {
-        console.error(`* Shelf Template ${opts.name} was not saved! (${response.statusCode})`);
-        console.error(`* check the logs! ./.vtex-deploy`);
+        log && console.error(`* Shelf Template ${opts.name} was not saved! (${response.statusCode})`);
+        log && console.error(`* check the logs! ./.vtex-deploy`);
       }
 
       logger(opts, body);
@@ -63,7 +64,7 @@ module.exports = async function(opts, cb) {
       }
     });
   } catch(err) { 
-    console.error(`Shelf Template was not saved error: ${err}`);
+    log && console.error(`Shelf Template was not saved error: ${err}`);
     if(typeof cb == 'function'){
       cb(null);
     }

@@ -17,6 +17,7 @@ module.exports = async function(opts, cb) {
   let url = `https://${opts.store}${baseUrl}`;
   let templateId = opts.id || generateNewTemplateId(opts.name);
   let actionForm = (opts.id) ? 'Update' : 'Save';
+  const log = opts.log !== false;
 
   try {
     return request({
@@ -39,14 +40,14 @@ module.exports = async function(opts, cb) {
     }, function(error, response, body){
       let success = false;
       if(error) {
-        console.error(`Subtemplate ${opts.name} was not saved: `, error);
+        log && console.error(`Subtemplate ${opts.name} was not saved: `, error);
       }
       if(response.statusCode === 200 && !/originalMessage/.test(body)) {
-        console.log(`* Subtemplate ${opts.name} was saved on ${opts.store}`);
+        opts.log !== false && log && console.log(`* Subtemplate ${opts.name} was saved on ${opts.store}`);
         success = true;
       } else {
-        console.error(`* Subtemplate ${opts.name} was not saved!`);
-        console.error(`* check the logs! ./.vtex-deploy`);
+        log && console.error(`* Subtemplate ${opts.name} was not saved!`);
+        log && console.error(`* check the logs! ./.vtex-deploy`);
       }
 
       logger(opts, body);
@@ -55,7 +56,7 @@ module.exports = async function(opts, cb) {
       }
     });
   } catch(err) { 
-    console.error(`SubTemplate ${opts.name} was not saved error: ${err}`);
+    log && console.error(`SubTemplate ${opts.name} was not saved error: ${err}`);
     if(typeof cb == 'function'){
       cb(null);
     }
